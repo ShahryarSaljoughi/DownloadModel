@@ -22,9 +22,13 @@ while True:
         clientsList.append(client)
 
     while True:
+
         data=clientsList[0][0].recv(BUFSIZ)
         if data :
             clientsList[1][0].send(''.join(str(data)))
+
+
+
         data=clientsList[1][0].recv(BUFSIZ)
         if data :
             clientsList[0][0].send(''.join(data))
