@@ -5,7 +5,7 @@ from FileList import get_filepaths
 import os
 
 HOST = '127.0.0.1'
-PORT = 21569
+PORT = 21560
 BUFSIZ = 1024
 ADDR = (HOST, PORT)
 tcpCliSock = socket(AF_INET, SOCK_STREAM)
@@ -46,16 +46,23 @@ while True:
             file_2_download_path=PvCliSock.recv(1024)
             print  "(s)he wants to download %s"%file_2_download_path
 
-
+            """
+            PvCliSock.send(file_2_download_path)
+            print "all data was sent successfuly! :)))) "
+            PvCliSock.send("")
+            """
+            #"""
             wanted_file=open(file_2_download_path,'r')
             eleman=wanted_file.read()
             while eleman:
                 print "Sending ..."
                 PvCliSock.send(eleman)
+                print eleman
                 eleman=wanted_file.read()
+            PvCliSock.send(eleman)
             print "the file was succesfully sent"
             wanted_file.close()
-
+            #"""
 
 
 

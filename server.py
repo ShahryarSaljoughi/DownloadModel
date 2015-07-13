@@ -3,7 +3,7 @@ __author__ = 'shahryar_slg'
 from socket import *
 import re
 HOST = ''
-PORT = 21569
+PORT = 21560
 BUFSIZ = 1024
 ADDR = (HOST, PORT)
 tcpSerSock = socket(AF_INET, SOCK_STREAM)

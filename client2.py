@@ -3,7 +3,7 @@ __author__ = 'shahryar_slg'
 from socket import *
 from time import sleep
 HOST = '127.0.0.1'
-PORT = 21569
+PORT = 21560
 BUFSIZ = 1024
 ADDR = (HOST, PORT)
 
@@ -46,15 +46,33 @@ while True:
             print "that's it"
             file_2_download_path=raw_input("type the one U want ...")
             PvCliSock.send(str(file_2_download_path))
-            Download_counter+=1
-            f=open('download %s'%Download_counter,'w')
+            Download_counter+=2
+            #f=open('download %s.txt'%Download_counter,'w')
+            f=open('download3.txt','w')
+
+            while True :
+                eleman=PvCliSock.recv(1024)
+                print eleman
+                f.write(eleman)
+                print "Receiving ... "
+                if not eleman:
+                    print "all data received successfuly"
+                    f.close()
+                    break
+
+
+
+            PvCliSock.close()
+
+            """
             eleman=PvCliSock.recv(1024)
             while eleman:
                 print "Receiving ..."
                 f.write(eleman)
-                eleman=PvCliSock.recv(4096)
+                eleman=PvCliSock.recv(1024)
             print "the file was successfully downloaded"
             f.close()
+            """
 
 
 
